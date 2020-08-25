@@ -5,6 +5,7 @@ import {
   firebaseTriggerCrash,
   firebaseRemoteConfigFetchData,
   firebaseRemoteConfigGetData,
+  firebaseInAppMessagingSuppress,
 } from './src/services/index';
 
 const App = () => {
@@ -15,9 +16,14 @@ const App = () => {
   // Did Mount
   useEffect(() => {
     console.log('App.js did mount');
+    firebaseInAppMessagingSuppress(true);
     firebaseRemoteConfigFetchData().then((status) => {
       setLoading(!status);
     });
+
+    setTimeout(() => {
+      firebaseInAppMessagingSuppress(false);
+    }, 5000);
   }, []);
 
   /** Functional Section */

@@ -1,6 +1,7 @@
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
 import remoteConfig from '@react-native-firebase/remote-config';
+import inAppMessaging from '@react-native-firebase/in-app-messaging';
 
 let REMOTE_CONFIG_DATA;
 
@@ -53,9 +54,19 @@ function firebaseRemoteConfigGetData(configKey) {
   }
 }
 
+async function firebaseInAppMessagingSuppress(isSuppress) {
+  if (isSuppress) {
+    await inAppMessaging().setMessagesDisplaySuppressed(true);
+  } else {
+    inAppMessaging().setMessagesDisplaySuppressed(false);
+  }
+  console.log('is supress?', isSuppress);
+}
+
 export {
   firebaseEventTracking,
   firebaseTriggerCrash,
   firebaseRemoteConfigFetchData,
   firebaseRemoteConfigGetData,
+  firebaseInAppMessagingSuppress,
 };
