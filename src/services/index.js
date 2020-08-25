@@ -47,11 +47,7 @@ async function firebaseRemoteConfigFetchData() {
 }
 
 function firebaseRemoteConfigGetData(configKey) {
-  try {
-    return REMOTE_CONFIG_DATA[configKey];
-  } catch (error) {
-    console.log('error while getting remote config data', error);
-  }
+  return REMOTE_CONFIG_DATA[configKey];
 }
 
 async function firebaseInAppMessagingSuppress(isSuppress) {
