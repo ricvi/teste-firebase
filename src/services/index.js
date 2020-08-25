@@ -1,7 +1,9 @@
+import {Alert} from 'react-native';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
 import remoteConfig from '@react-native-firebase/remote-config';
 import inAppMessaging from '@react-native-firebase/in-app-messaging';
+import messaging from '@react-native-firebase/messaging';
 
 let REMOTE_CONFIG_DATA;
 
@@ -58,10 +60,19 @@ async function firebaseInAppMessagingSuppress(isSuppress) {
   }
 }
 
+function firebaseCloudMessagingForeground() {
+  const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+  });
+
+  return unsubscribe;
+}
+
 export {
   firebaseEventTracking,
   firebaseTriggerCrash,
   firebaseRemoteConfigFetchData,
   firebaseRemoteConfigGetData,
   firebaseInAppMessagingSuppress,
+  firebaseCloudMessagingForeground,
 };
