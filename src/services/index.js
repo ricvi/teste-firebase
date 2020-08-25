@@ -56,7 +56,6 @@ async function firebaseInAppMessagingSuppress(isSuppress) {
   } else {
     inAppMessaging().setMessagesDisplaySuppressed(false);
   }
-  console.log('is supress?', isSuppress);
 }
 
 export {
