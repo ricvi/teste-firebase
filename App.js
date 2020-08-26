@@ -6,6 +6,7 @@ import {
   firebaseRemoteConfigFetchData,
   firebaseRemoteConfigGetData,
   firebaseInAppMessagingSuppress,
+  firebaseCloudMessagingForeground,
 } from './src/services/index';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
     firebaseRemoteConfigFetchData().then((status) => {
       setLoading(!status);
     });
+    firebaseCloudMessagingForeground();
 
     setTimeout(() => {
       firebaseInAppMessagingSuppress(false);
