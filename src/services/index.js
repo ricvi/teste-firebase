@@ -60,6 +60,10 @@ async function firebaseInAppMessagingSuppress(isSuppress) {
   }
 }
 
+async function firebaseCloudMessagingGetToken() {
+  return await messaging().getToken();
+}
+
 function firebaseCloudMessagingForeground() {
   const unsubscribe = messaging().onMessage(async (remoteMessage) => {
     Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
@@ -74,5 +78,6 @@ export {
   firebaseRemoteConfigFetchData,
   firebaseRemoteConfigGetData,
   firebaseInAppMessagingSuppress,
+  firebaseCloudMessagingGetToken,
   firebaseCloudMessagingForeground,
 };
