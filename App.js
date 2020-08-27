@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import {
   firebaseEventTracking,
   firebaseTriggerCrash,
@@ -7,10 +7,17 @@ import {
   firebaseRemoteConfigGetData,
   firebaseInAppMessagingSuppress,
   firebaseCloudMessagingForeground,
-} from './src/services/index';
+} from './src/services';
+import NotificationServices from './src/services/notificationService';
+import PushNotification from 'react-native-push-notification';
+import NotifService from './src/services/notificationService';
+
+let notification;
 
 const App = () => {
   const [isLoading, setLoading] = useState(true);
+  const [registerToken, setRegisterToken] = useState('');
+  const [isFcmRegistered, setFcmRegistered] = useState(false);
 
   /** Lifecycle Section */
 
@@ -23,15 +30,29 @@ const App = () => {
     });
     firebaseCloudMessagingForeground();
 
+    notification = new NotificationServices(onRegister, onNotification);
+
     setTimeout(() => {
       firebaseInAppMessagingSuppress(false);
     }, 5000);
   }, []);
 
+  /** Push Notification Section */
+
+  const onRegister = (token) => {
+    setRegisterToken(token);
+    setFcmRegistered(true);
+  };
+
+  const onNotification = (notif) => {
+    // Alert.alert(notif.title, notif.message);
+  };
+
   /** Functional Section */
 
   // onPress "Tap Me" Button
   const onPressTapMeButton = () => {
+    notification.localNotif('sample.mp3');
     firebaseEventTracking('button_tapped', {buttonName: 'tap me'});
   };
 
