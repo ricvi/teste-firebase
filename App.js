@@ -8,9 +8,7 @@ import {
   firebaseInAppMessagingSuppress,
   firebaseCloudMessagingForeground,
 } from './src/services';
-import NotificationServices from './src/services/notificationService';
-import PushNotification from 'react-native-push-notification';
-import NotifService from './src/services/notificationService';
+import NotificationServices from './src/services/PushNotification/NotificationService';
 
 let notification;
 
@@ -45,14 +43,19 @@ const App = () => {
   };
 
   const onNotification = (notif) => {
-    // Alert.alert(notif.title, notif.message);
+    Alert.alert(notif.title, notif.message);
   };
 
   /** Functional Section */
 
+  // onPress "Test Notification" Button
+  const onPressTestNotification = () => {
+    notification.localNotif();
+    firebaseEventTracking('button_tapped', {buttonName: 'test notification'});
+  };
+
   // onPress "Tap Me" Button
   const onPressTapMeButton = () => {
-    notification.localNotif('sample.mp3');
     firebaseEventTracking('button_tapped', {buttonName: 'tap me'});
   };
 
@@ -63,6 +66,16 @@ const App = () => {
   };
 
   /** Render Section */
+
+  const renderTestNotificationButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.customButton}
+        onPress={() => onPressTestNotification()}>
+        <Text style={styles.customButtonText}>Test Notification</Text>
+      </TouchableOpacity>
+    );
+  };
 
   const renderTapMeButton = () => {
     return (
@@ -97,6 +110,7 @@ const App = () => {
         renderLoading()
       ) : (
         <>
+          {renderTestNotificationButton()}
           {renderTapMeButton()}
           {renderCrashMeButton()}
         </>
@@ -112,7 +126,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   customButton: {
-    width: 100,
     padding: 12,
     borderColor: 'green',
     borderWidth: 2,
@@ -122,6 +135,7 @@ const styles = StyleSheet.create({
   },
   customButtonText: {
     color: 'green',
+    textAlign: 'center',
   },
 });
 
