@@ -7,6 +7,7 @@ import {
   firebaseRemoteConfigGetData,
   firebaseInAppMessagingSuppress,
   firebaseCloudMessagingForeground,
+  firebaseCloudMessagingBackground,
 } from './src/services';
 import NotificationServices from './src/services/PushNotification/NotificationService';
 
@@ -29,6 +30,7 @@ const App = () => {
 
     notification = new NotificationServices(onRegister, onNotification);
     firebaseCloudMessagingForeground(notification);
+    firebaseCloudMessagingBackground(notification);
 
     setTimeout(() => {
       firebaseInAppMessagingSuppress(false);

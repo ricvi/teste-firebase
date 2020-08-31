@@ -76,6 +76,12 @@ function firebaseCloudMessagingForeground(notification) {
   return unsubscribe;
 }
 
+function firebaseCloudMessagingBackground(notification) {
+  messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    notification.localNotif(remoteMessage);
+  });
+}
+
 export {
   firebaseEventTracking,
   firebaseTriggerCrash,
@@ -84,4 +90,5 @@ export {
   firebaseInAppMessagingSuppress,
   firebaseCloudMessagingGetToken,
   firebaseCloudMessagingForeground,
+  firebaseCloudMessagingBackground,
 };
