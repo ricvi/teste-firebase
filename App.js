@@ -26,9 +26,9 @@ const App = () => {
     firebaseRemoteConfigFetchData().then((status) => {
       setLoading(!status);
     });
-    firebaseCloudMessagingForeground();
 
     notification = new NotificationServices(onRegister, onNotification);
+    firebaseCloudMessagingForeground(notification);
 
     setTimeout(() => {
       firebaseInAppMessagingSuppress(false);
@@ -50,7 +50,6 @@ const App = () => {
 
   // onPress "Test Notification" Button
   const onPressTestNotification = () => {
-    notification.localNotif();
     firebaseEventTracking('button_tapped', {buttonName: 'test notification'});
   };
 
