@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import {
-  firebaseEventTracking,
-  firebaseTriggerCrash,
-  firebaseRemoteConfigFetchData,
-  firebaseRemoteConfigGetData,
-  firebaseInAppMessagingSuppress,
-  firebaseCloudMessagingForeground,
-  firebaseCloudMessagingBackground,
-} from './src/services';
+  CloudMessaging,
+  Crashlytic,
+  Event,
+  InAppMessaging,
+  RemoteConfig,
+} from './src/services/Firebase';
 import NotificationServices from './src/services/PushNotification/NotificationService';
 
 let notification;
@@ -23,17 +21,17 @@ const App = () => {
   // Did Mount
   useEffect(() => {
     console.log('App.js did mount');
-    firebaseInAppMessagingSuppress(true);
-    firebaseRemoteConfigFetchData().then((status) => {
+    InAppMessaging.suppressMessaging(true);
+    RemoteConfig.fetchData().then((status) => {
       setLoading(!status);
     });
 
     notification = new NotificationServices(onRegister, onNotification);
-    firebaseCloudMessagingForeground(notification);
-    firebaseCloudMessagingBackground(notification);
+    CloudMessaging.handleForeground(notification);
+    CloudMessaging.handleBackground(notification);
 
     setTimeout(() => {
-      firebaseInAppMessagingSuppress(false);
+      InAppMessaging.suppressMessaging(false);
     }, 5000);
   }, []);
 
@@ -52,18 +50,18 @@ const App = () => {
 
   // onPress "Test Notification" Button
   const onPressTestNotification = () => {
-    firebaseEventTracking('button_tapped', {buttonName: 'test notification'});
+    Event.logEvent('button_tapped', {buttonName: 'test notification'});
   };
 
   // onPress "Tap Me" Button
   const onPressTapMeButton = () => {
-    firebaseEventTracking('button_tapped', {buttonName: 'tap me'});
+    Event.logEvent('button_tapped', {buttonName: 'tap me'});
   };
 
   // onPress "Crash Me" Button
   const onPressCrashMeButton = () => {
-    firebaseEventTracking('button_tapped', {buttonName: 'crash me'});
-    firebaseTriggerCrash();
+    Event.logEvent('button_tapped', {buttonName: 'crash me'});
+    Crashlytic.triggerCrash();
   };
 
   /** Render Section */
@@ -89,7 +87,7 @@ const App = () => {
   };
 
   const renderCrashMeButton = () => {
-    const {isEnabled} = firebaseRemoteConfigGetData('crash_me_button');
+    const {isEnabled} = RemoteConfig.getData('crash_me_button');
     return isEnabled ? (
       <TouchableOpacity
         style={styles.customButton}
