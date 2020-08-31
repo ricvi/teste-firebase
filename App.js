@@ -48,11 +48,6 @@ const App = () => {
 
   /** Functional Section */
 
-  // onPress "Test Notification" Button
-  const onPressTestNotification = () => {
-    Event.logEvent('button_tapped', {buttonName: 'test notification'});
-  };
-
   // onPress "Tap Me" Button
   const onPressTapMeButton = () => {
     Event.logEvent('button_tapped', {buttonName: 'tap me'});
@@ -65,16 +60,6 @@ const App = () => {
   };
 
   /** Render Section */
-
-  const renderTestNotificationButton = () => {
-    return (
-      <TouchableOpacity
-        style={styles.customButton}
-        onPress={() => onPressTestNotification()}>
-        <Text style={styles.customButtonText}>Test Notification</Text>
-      </TouchableOpacity>
-    );
-  };
 
   const renderTapMeButton = () => {
     return (
@@ -109,7 +94,6 @@ const App = () => {
         renderLoading()
       ) : (
         <>
-          {renderTestNotificationButton()}
           {renderTapMeButton()}
           {renderCrashMeButton()}
         </>
