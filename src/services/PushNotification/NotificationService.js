@@ -101,8 +101,4 @@ export default class NotificationService {
   abandonPermissions() {
     PushNotification.abandonPermissions();
   }
-
-  getScheduledLocalNotifications(callback) {
-    PushNotification.getScheduledLocalNotifications(callback);
-  }
 }
