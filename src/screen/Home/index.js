@@ -25,9 +25,9 @@ const HomeScreen = ({navigation}) => {
   };
 
   // onPress "Go To About" Button
-  const onPressGoToAboutButton = () => {
-    Event.logEvent('button_tapped', {buttonName: 'go to about'});
-    navigation.navigate('About');
+  const onPressGoToSettingButton = () => {
+    Event.logEvent('button_tapped', {buttonName: 'go to setting'});
+    navigation.navigate('Setting');
   };
 
   /** Render Section */
@@ -55,12 +55,12 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const renderGoToAboutButton = () => {
+  const renderGoToSettingButton = () => {
     return (
       <TouchableOpacity
         style={styles.customButton}
-        onPress={() => onPressGoToAboutButton()}>
-        <Text style={styles.customButtonText}>Go To About</Text>
+        onPress={() => onPressGoToSettingButton()}>
+        <Text style={styles.customButtonText}>Go To Setting</Text>
       </TouchableOpacity>
     );
   };
@@ -69,7 +69,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       {renderTapMeButton()}
       {renderCrashMeButton()}
-      {renderGoToAboutButton()}
+      {renderGoToSettingButton()}
     </View>
   );
 };
