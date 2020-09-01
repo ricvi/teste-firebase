@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {Crashlytic, Event, RemoteConfig} from '../../services/firebase';
+import {PRIMARY} from '../../config/colors';
 
 const HomeScreen = ({navigation}) => {
   /** Lifecycle Section */
@@ -80,15 +81,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   customButton: {
+    width: 200,
     padding: 12,
-    borderColor: 'green',
+    borderColor: PRIMARY,
     borderWidth: 2,
     borderRadius: 5,
     alignItems: 'center',
     marginBottom: 10,
   },
   customButtonText: {
-    color: 'green',
+    color: PRIMARY,
     textAlign: 'center',
   },
 });
