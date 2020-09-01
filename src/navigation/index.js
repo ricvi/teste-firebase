@@ -3,13 +3,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {PRIMARY, DISABLED} from '../config/colors';
 import SplashScreen from '../screen/Splash';
 import HomeScreen from '../screen/Home';
 import AboutScreen from '../screen/About';
 import ProfileScreen from '../screen/Profile';
-
-const activeColor = '#4254f5';
-const innactiveColor = '#8c8c8c';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,8 +20,7 @@ const StackNavigator = () => {
         component={SplashScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name="Home" component={TabNavigator} />
     </Stack.Navigator>
   );
 };
@@ -48,14 +45,14 @@ const TabNavigator = () => {
             <Ionicons
               name={iconName}
               size={21}
-              color={focused ? activeColor : innactiveColor}
+              color={focused ? PRIMARY : DISABLED}
             />
           );
         },
       })}
       tabBarOptions={{
-        activeTintColor: activeColor,
-        inactiveTintColor: innactiveColor,
+        activeTintColor: PRIMARY,
+        inactiveTintColor: DISABLED,
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="About" component={AboutScreen} />
@@ -67,7 +64,7 @@ const TabNavigator = () => {
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <StackNavigator />
     </NavigationContainer>
   );
 };
