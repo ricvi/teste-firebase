@@ -29,7 +29,7 @@ const SplashScreen = ({navigation}) => {
 
     setTimeout(() => {
       InAppMessaging.suppressMessaging(false);
-      navigation.navigate('Home');
+      navigateToHome();
     }, 5000);
   }, []);
 
@@ -43,6 +43,14 @@ const SplashScreen = ({navigation}) => {
   const onNotification = (notif) => {
     // TODO: add on notification press handler
   };
+
+  /** Functional Section */
+
+  const navigateToHome = () => {
+    navigation.navigate('Home');
+  };
+
+  /** Render Section */
 
   const renderLoading = () => {
     return <Image source={FIREBASE_LOGO} />;
