@@ -21,7 +21,11 @@ const StackNavigator = () => {
         component={SplashScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen
+        name="Home"
+        component={TabNavigator}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Setting" component={SettingScreen} />
     </Stack.Navigator>
   );
