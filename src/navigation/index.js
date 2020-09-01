@@ -6,13 +6,23 @@ import SplashScreen from '../screen/Splash';
 
 const Stack = createStackNavigator();
 
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
+  );
+};
+
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <StackNavigator />
     </NavigationContainer>
   );
 };
