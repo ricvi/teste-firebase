@@ -45,7 +45,7 @@ export default class NotificationService {
   localNotif(remoteConfig) {
     const {notification} = remoteConfig;
     const fullBody = notification.body;
-    let slicedBody;
+    let slicedBody = notification.body;
     if (notification.body.length > 100) {
       slicedBody = `${notification.body.slice(0, 100)}...`;
     }
