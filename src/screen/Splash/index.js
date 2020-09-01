@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {
   CloudMessaging,
   InAppMessaging,
   RemoteConfig,
 } from '../../services/firebase';
 import NotificationServices from '../../services/push-notification/NotificationService';
+import {FIREBASE_LOGO} from '../../assets/images';
 
 const SplashScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
@@ -44,7 +45,7 @@ const SplashScreen = ({navigation}) => {
   };
 
   const renderLoading = () => {
-    return <Text>As If Loading</Text>;
+    return <Image source={FIREBASE_LOGO} />;
   };
 
   return <View style={styles.container}>{renderLoading()}</View>;
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black',
   },
 });
 
