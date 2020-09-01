@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const AboutScreen = () => {
+  /** Lifecycle Section */
+
+  // Did Mount
+  useEffect(() => {
+    console.log('About.js did mount');
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <Text>About Screen</Text>
     </View>
   );
 };

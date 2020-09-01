@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const ProfileScreen = () => {
+const SettingScreen = () => {
   /** Lifecycle Section */
 
   // Did Mount
   useEffect(() => {
-    console.log('Profile.js did mount');
+    console.log('Setting.js did mount');
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Profile Screen</Text>
+      <Text>Setting Screen</Text>
     </View>
   );
 };
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default SettingScreen;

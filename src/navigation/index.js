@@ -8,6 +8,7 @@ import SplashScreen from '../screen/Splash';
 import HomeScreen from '../screen/Home';
 import AboutScreen from '../screen/About';
 import ProfileScreen from '../screen/Profile';
+import SettingScreen from '../screen/Setting';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,7 @@ const StackNavigator = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="Setting" component={SettingScreen} />
     </Stack.Navigator>
   );
 };
