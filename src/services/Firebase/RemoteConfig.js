@@ -1,22 +1,15 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 
-// remote config data
-let REMOTE_CONFIG_DATA;
-
-// set the default for remote config here
-const REMOTE_CONFIG_KEY = {
-  CRASH_ME_BUTTON: 'crash_me_button',
+// remote config default data
+let REMOTE_CONFIG_DATA = {
+  crash_me_button: {
+    isEnabled: false,
+  },
 };
 
 function init() {
-  const crashMeButtonDefaultValue = {
-    isEnabled: false,
-  };
-
   remoteConfig().setDefaults({
-    [REMOTE_CONFIG_KEY.CRASH_ME_BUTTON]: JSON.stringify(
-      crashMeButtonDefaultValue,
-    ),
+    ...REMOTE_CONFIG_DATA,
   });
 }
 
