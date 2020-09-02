@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Analytic} from '../services/firebase-services';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {PRIMARY, DISABLED} from '../config/colors';
 import SplashScreen from '../screen/Splash';
@@ -68,8 +69,27 @@ const TabNavigator = () => {
 };
 
 const Navigation = () => {
+  const routeNameRef = React.useRef();
+  const navigationRef = React.useRef();
+
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() =>
+        (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
+      }
+      onStateChange={() => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+        if (previousRouteName !== currentRouteName) {
+          // set the screen
+          Analytic.logScreen(currentRouteName);
+        }
+
+        // save the current route name for later comparison
+        routeNameRef.current = currentRouteName;
+      }}>
       <StackNavigator />
     </NavigationContainer>
   );
