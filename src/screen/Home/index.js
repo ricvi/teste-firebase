@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Crashlytic, Event, RemoteConfig} from '../../services/firebase-services';
+import {Crashlytic, Analytic, RemoteConfig} from '../../services/firebase-services';
 import {PRIMARY} from '../../config/colors';
 
 const HomeScreen = ({navigation}) => {
@@ -15,18 +15,18 @@ const HomeScreen = ({navigation}) => {
 
   // onPress "Tap Me" Button
   const onPressTapMeButton = () => {
-    Event.logEvent('button_tapped', {buttonName: 'tap me'});
+    Analytic.logEvent('button_tapped', {buttonName: 'tap me'});
   };
 
   // onPress "Crash Me" Button
   const onPressCrashMeButton = () => {
-    Event.logEvent('button_tapped', {buttonName: 'crash me'});
+    Analytic.logEvent('button_tapped', {buttonName: 'crash me'});
     Crashlytic.triggerCrash();
   };
 
   // onPress "Go To About" Button
   const onPressGoToSettingButton = () => {
-    Event.logEvent('button_tapped', {buttonName: 'go to setting'});
+    Analytic.logEvent('button_tapped', {buttonName: 'go to setting'});
     navigation.navigate('Setting');
   };
 

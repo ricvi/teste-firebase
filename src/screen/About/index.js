@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Crashlytic, Event, RemoteConfig} from '../../services/firebase-services';
+import {Crashlytic, Analytic, RemoteConfig} from '../../services/firebase-services';
 import {PRIMARY} from '../../config/colors';
 
 const AboutScreen = () => {
@@ -15,7 +15,7 @@ const AboutScreen = () => {
 
   // onPress "Crash Me" Button
   const onPressCrashMeButton = () => {
-    Event.logEvent('button_tapped', {buttonName: 'crash me'});
+    Analytic.logEvent('button_tapped', {buttonName: 'crash me'});
     Crashlytic.triggerCrash();
   };
 
