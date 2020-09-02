@@ -3,8 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Analytic} from '../services/firebase-services';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {navigationRef} from './RootNavigation';
 import {PRIMARY, DISABLED} from '../config/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import SplashScreen from '../screen/Splash';
 import HomeScreen from '../screen/Home';
 import AboutScreen from '../screen/About';
@@ -70,7 +71,6 @@ const TabNavigator = () => {
 
 const Navigation = () => {
   const routeNameRef = React.useRef();
-  const navigationRef = React.useRef();
 
   return (
     <NavigationContainer

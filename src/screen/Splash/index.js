@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {
   Analytic,
   CloudMessaging,
   InAppMessaging,
   RemoteConfig,
 } from '../../services/firebase-services';
+import RootNavigation from '../../navigation/RootNavigation';
 import NotificationServices from '../../services/push-notification/NotificationService';
 import {FIREBASE_LOGO} from '../../assets/images';
 import {PRIMARY} from '../../config/colors';
@@ -14,12 +15,14 @@ const SplashScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
   const [registerToken, setRegisterToken] = useState('');
   const [isFcmRegistered, setFcmRegistered] = useState(false);
+  const [isInitializeFinish, setInitializeFinish] = useState(false);
 
   /** Lifecycle Section */
 
   // Did Mount
   useEffect(() => {
     console.log('Splash.js did mount');
+    Analytic.logScreen('Splash');
     InAppMessaging.suppressMessaging(true);
     RemoteConfig.fetchData().then((status) => {
       setLoading(!status);
@@ -31,9 +34,17 @@ const SplashScreen = ({navigation}) => {
 
     setTimeout(() => {
       InAppMessaging.suppressMessaging(false);
-      navigateToHome();
+      setInitializeFinish(true);
     }, 5000);
   }, []);
+
+  // Did Update
+
+  useEffect(() => {
+    if (isInitializeFinish) {
+      RootNavigation.reset('Home');
+    }
+  });
 
   /** Push Notification Section */
 
@@ -47,10 +58,6 @@ const SplashScreen = ({navigation}) => {
   };
 
   /** Functional Section */
-
-  const navigateToHome = () => {
-    navigation.navigate('Home');
-  };
 
   /** Render Section */
 

@@ -1,6 +1,11 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Crashlytic, Analytic, RemoteConfig} from '../../services/firebase-services';
+import {
+  Crashlytic,
+  Analytic,
+  RemoteConfig,
+} from '../../services/firebase-services';
+import RootNavigation from '../../navigation/RootNavigation';
 import {PRIMARY} from '../../config/colors';
 
 const HomeScreen = ({navigation}) => {
@@ -27,7 +32,7 @@ const HomeScreen = ({navigation}) => {
   // onPress "Go To About" Button
   const onPressGoToSettingButton = () => {
     Analytic.logEvent('button_tapped', {buttonName: 'go to setting'});
-    navigation.navigate('Setting');
+    RootNavigation.push('Setting');
   };
 
   /** Render Section */
