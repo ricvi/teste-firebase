@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Crashlytic, Event, RemoteConfig} from '../../services/firebase';
+import {Crashlytic, Event, RemoteConfig} from '../../services/firebase-services';
 import {PRIMARY} from '../../config/colors';
 
 const HomeScreen = ({navigation}) => {
