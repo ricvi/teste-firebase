@@ -20,7 +20,6 @@ const SplashScreen = ({navigation}) => {
   // Did Mount
   useEffect(() => {
     console.log('Splash.js did mount');
-    Analytic.logScreen('SplashScreen');
     InAppMessaging.suppressMessaging(true);
     RemoteConfig.fetchData().then((status) => {
       setLoading(!status);
