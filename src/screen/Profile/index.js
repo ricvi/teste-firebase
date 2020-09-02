@@ -9,6 +9,7 @@ const ProfileScreen = () => {
   // Did Mount
   useEffect(() => {
     console.log('Profile.js did mount');
+    Analytic.logScreen('ProfileScreen');
   }, []);
 
   /** Functional Section */

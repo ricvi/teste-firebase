@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {
+  Analytic,
   CloudMessaging,
   InAppMessaging,
   RemoteConfig,
@@ -19,6 +20,7 @@ const SplashScreen = ({navigation}) => {
   // Did Mount
   useEffect(() => {
     console.log('Splash.js did mount');
+    Analytic.logScreen('SplashScreen');
     InAppMessaging.suppressMessaging(true);
     RemoteConfig.fetchData().then((status) => {
       setLoading(!status);

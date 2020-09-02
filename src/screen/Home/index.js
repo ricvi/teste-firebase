@@ -9,6 +9,7 @@ const HomeScreen = ({navigation}) => {
   // Did Mount
   useEffect(() => {
     console.log('Home.js did mount');
+    Analytic.logScreen('HomeScreen');
   }, []);
 
   /** Functional Section */

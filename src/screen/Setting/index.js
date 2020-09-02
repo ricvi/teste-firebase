@@ -9,6 +9,7 @@ const SettingScreen = () => {
   // Did Mount
   useEffect(() => {
     console.log('Setting.js did mount');
+    Analytic.logScreen('SettingScreen');
   }, []);
 
   /** Functional Section */
