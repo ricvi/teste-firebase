@@ -4,9 +4,10 @@ import {
   CloudMessaging,
   InAppMessaging,
   RemoteConfig,
-} from '../../services/firebase';
+} from '../../services/firebase-services';
 import NotificationServices from '../../services/push-notification/NotificationService';
 import {FIREBASE_LOGO} from '../../assets/images';
+import {PRIMARY} from '../../config/colors';
 
 const SplashScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: PRIMARY,
   },
 });
 
