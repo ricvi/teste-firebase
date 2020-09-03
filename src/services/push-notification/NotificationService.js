@@ -62,10 +62,11 @@ export default class NotificationService {
       color: 'red', // (optional) default: system default
       vibrate: true, // (optional) default: true
       vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-      tag: 'some_tag', // (optional) add tag to message
-      group: 'group', // (optional) add group to message
+      // tag: 'some_tag', // (optional) add tag to message
+      // group: 'group', // (optional) add group to message
       ongoing: false, // (optional) set whether this is an "ongoing" notification
-      invokeApp: true, // (optional) This enable click on actions to bring back the application to foreground or stay in background, default: true
+      // actions: ['Yes', 'No'], // (Android only) See the doc for notification actions to know more
+      // invokeApp: true, // (optional) This enable click on actions to bring back the application to foreground or stay in background, default: true
 
       /* iOS only properties */
       alertAction: 'view', // (optional) default: view
